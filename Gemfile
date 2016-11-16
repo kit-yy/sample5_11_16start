@@ -31,3 +31,5 @@ end
 # 実行環境では、PostageSQL
 # のデータベースを使用する。
 
+#Heroku は、sqlite3に対応していないため。
+
