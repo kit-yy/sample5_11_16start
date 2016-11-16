@@ -1,2 +1,11 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+
+<% provide(:title, "Home")%>
+<!--ここは「関数の引数」-->
+<!--[provide]は、ページタイトルとかをview側から動的に送る方法。-->
+
+    <h1>Sample App</h1>
+    <p>
+        This is the home page for the
+        <a href="http://www.railstutorial.org/">Ruby on Rails Tutorial</a>
+        sample application.
+    </p>
