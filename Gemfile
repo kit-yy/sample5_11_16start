@@ -27,7 +27,6 @@ group :production do
   # PostageSQL用のpg gem
   gem 'rails_12factor', '0.0.2'
 end
-
 # テスト環境と開発環境では、sqlite3
 # 実行環境では、PostageSQL
 # のデータベースを使用する。
