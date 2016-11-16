@@ -3,7 +3,7 @@ require 'test_helper'
 class StaticPagesControllerTest < ActionController::TestCase
   
   def setup
-    @base_title = "Ruby on Rails Tutoril Sample App"
+    @base_title = "Ruby on Rails Tutorial Sample App"
   end
   
   test "should get home" do
@@ -11,7 +11,7 @@ class StaticPagesControllerTest < ActionController::TestCase
     # getリクエストを送信すれば、
     assert_response :success
     #「成功」になるはず。
-    assert_select "title", "Home | #{@base_tite}"
+    assert_select "title", "#{@base_title}"
   end
 
   test "should get help" do
