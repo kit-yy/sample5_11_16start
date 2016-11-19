@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+
+ /*上記最後の二行は、Sproketsによりアセットのファイルをまとめる際に使うインクルードするために使われる。*/
+
+/*Asset Pipelineでは、
+* すべてのcssファイルを一つのcssファイルapplivation.cssにし、
+* すべてのJavaScriptファイルをjavascrip.jsという一つのファイルにするため効率的になる
+*/
+
+/*
+*さらに、不要なインデントや空白を取り除くため、ファイルが最小になる。
+*/
