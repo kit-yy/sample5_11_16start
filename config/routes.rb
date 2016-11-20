@@ -5,6 +5,14 @@ Rails.application.routes.draw do
   get 'contact' => 'static_pages#contact'
   get 'signup'  => 'users#new'
 
+  resources :users
+  # ユーザデータをRESTアーキテクチャで扱う。
+  # ＝＞データを作成、表示、更新、削除可能なリソースとして扱うということ！
+  # 
+  # そうすると、
+  # id = 1のユーザを参照するということは、
+  # /users/1にgetメソッドでアクセスするということになる！！
+
 end
 
 
