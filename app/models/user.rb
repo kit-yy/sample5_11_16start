@@ -9,6 +9,13 @@ class User < ActiveRecord::Base
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
     validates(:email, presence: true, length:{maximum:255}, format:{with: VALID_EMAIL_REGEX}, uniqueness:{case_sensitive: false})
 
+
+    has_secure_password
+    # この文言を加えるだけOK
+    # これを有効にするには、passwoed_digestカラムを追加し、
+    # gemにハッシュ関数を加える。
+
+    validates(:password, presence:true,length:{minimum:6} )
 end
 
 # validates :name, presence: true
