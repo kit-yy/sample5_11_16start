@@ -1,0 +1,32 @@
+<!--#　sessionsも、RESTアーキテクチャに寄せていくと、-->
+<!--#　他のRESTfulリソースと問おういつ的に理解しやすくなる。-->
+<!--# newアクションで、ログインフォーム。-->
+<!--# createアクションで、ログイン。など、無理やり寄せていくわけ。-->
+
+<!--その際必要なviewは、ログインフォームだけなので、-->
+<!--それを表示するためのnewアクションに対応するviewのみでOK-->
+
+<!--このviewを作る際は、新規登録フォームをパクれば良い。-->
+<% provide(:title, "Log in")%>
+<h1>Log in</h1>
+
+<div class = "row">
+    <div class = "col-md-6 col-md-offset-3">
+        
+        <%= form_for(:session, url:login_path) do |f| %>
+        <!-- ユーザ登録と違いSessionモデルがないため、@userのようなインスタンス変数が存在しない。-->
+        
+            <%= f.label :email %>
+            <%= f.email_field :email, class:'form-control'%>
+
+            <%= f.label :password %>
+            <%= f.password_field :password, class:'form-control'%>
+
+            <%= f.submit "Log in", class: "btn btn-primary"%>
+
+        <% end %>
+    
+    <p>New user?<%= link_to "Sign up now", signup_path %>
+
+    </div>
+</div>
