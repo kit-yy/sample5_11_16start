@@ -28,10 +28,14 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                             password_confirmation: "password" }
     end
     assert_template 'users/show'
+    assert is_logged_in?
   end
   # post_via_redirectメソッドは、POSTリクエスト送信結果を見た後に、
   # 指定されたURLにリダイレクトするメソッド。
 
   # asset_template : viewがうまく表示されるかどうかのアサーション
+
+  # assert is_logged_in? : ログインするかどうかのテスト。
+  # ここでは、サインイン直後のことをチェックする。
 
 end

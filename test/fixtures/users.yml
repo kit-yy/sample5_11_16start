@@ -1,10 +1,10 @@
-# # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+  # ログイン後の作業に関するテストの時、
+    # 仮想ユーザとしてログインしている必要がある。
+      # そのためにフィクスチャにテストに必要なデータをtestデータベースに読み込んで置く。
+        # その際、パスワードがhas_secure_passwordのbcryptでハッシュ化されたのと同様な要領でハッシュ化してもらうメソッドを使う。
+            # 今回それを関数化した。(User.digest()関数のこと)
 
-# one:
-#   name: MyString
-#   email: MyString
-
-# two:
-#   name: MyString
-#   email: MyString
-
+michael:
+  name: Michael Example
+  email: michael@example.com
+  password_digest: <%= User.digest('password') %>
