@@ -28,6 +28,10 @@ group :production do
   gem 'pg',             '0.17.1'
   # PostageSQL用のpg gem
   gem 'rails_12factor', '0.0.2'
+  gem 'puma',           '2.11.1'
+  # puma : 多数のリクエストに対応できるwebサーバ。
+  # RubyのデフォルトのWEBrikでは対応できないこともあるため。
+  
 end
 # テスト環境と開発環境では、sqlite3
 # 実行環境では、PostageSQL

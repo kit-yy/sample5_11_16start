@@ -35,6 +35,7 @@ Rails.application.configure do
   # yet still be able to expire them through the digest params.
   config.assets.digest = true
 
+
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Specifies the header that your server uses for sending files.
@@ -42,7 +43,15 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  config.force_ssl = true
+  # ここを設定すると、ssl（Secure Sockets Layer）が有効になる。
+  # sslが有効になると、ローカルサーバからネットワークに上がれる前に、
+  # 大事な情報を暗号化してくれる。
+
+  # 遠隔サーバのSSLセットアップは、ドメインごとにSSL証明書を購入する必要がある。
+  # しかし、
+  # herokuなら簡単。
+
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
