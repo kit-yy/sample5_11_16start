@@ -1,9 +1,17 @@
 class UsersController < ApplicationController
 
-  before_action :logged_in_user, only:[:edit, :update,:index]
+  before_action :logged_in_user, only:[:edit, :update,:destroy,:index]
   # editとupdateとindexのアクションに入る時は、まず「ログインしてください」から始まる。
   before_action :correct_user, only:[:edit, :update]
 
+  before_action :admin_user,     only: :destroy
+
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User deleted"
+    redirect_to users_url
+  end
+  
   def index
     @users = User.paginate(page: params[:page])
   end
@@ -55,7 +63,7 @@ class UsersController < ApplicationController
     end
     # ここにadmin属性が含まれていないことに注目。
 
-    
+
     def logged_in_user
       unless logged_in?
         store_location
@@ -72,6 +80,10 @@ class UsersController < ApplicationController
       # current_user?()メソッドは、sessionヘルパーで定義。
     end
 
+    # 管理者かどうか確認
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
+    end
 end
 
 # ・ストロングパラメータについて
