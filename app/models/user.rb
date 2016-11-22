@@ -59,10 +59,19 @@ class User < ActiveRecord::Base
     # 記憶ダイジェストを更新。
         
     def authenticated?(remember_token)
+        return false if remember_digest.nil?
         BCrypt::Password.new(remember_digest).is_password?(remember_token)
     end
     # 渡されたトークンがダジェストと一致したらtrueを返す。
     # BCrypt::Password.new(remember_digest) == remember_tokenの意味。
+
+
+    def forget
+        update_attribute(:remember_digest, nil)
+    end
+    # ユーザのログインを破棄するメソッド
+
+
 end
 
 # validates :name, presence: true

@@ -34,8 +34,11 @@ module SessionsHelper
         end
     end
 
-
-    # 現在ログインしているユーザを返す。
+    def forget(user) # rememberメソッドの逆をする。
+        cookies.delete(:user_id)
+        cookies.delete(:remember_token)
+        # ユーザIDと記憶トークンはペアなので。
+    end
 
    
     # ユーザーがログインしていればtrue、その他ならfalseを返す
@@ -44,6 +47,7 @@ module SessionsHelper
     end
 
     def log_out
+        forget(current_user)
         session.delete(:user_id)
         @current_user = nil
     end

@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
   # auhenticateメソッドは、認証に失敗した時、falseを返す。
 
   def destroy
-    log_out
+    log_out if logged_in?
     redirect_to root_url
   end
   # ヘルパーで作ったlog_outメソッドを使用。
