@@ -10,8 +10,10 @@ class SessionsController < ApplicationController
       log_in user
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       # ヘルパーで定義。
-      redirect_to user
+      redirect_back_or user
       # redirect_to user == redirect_to userurl(user)
+      # redirect_back_or：そのurlが存在したらリダイレクトし
+      # なかったら、デフォルトのurlにリダイレクトする。
     else
       flash.now[:danger] = 'Invalid email/password comination' 
       # ユーザ登録の時は、ActiveRecordのモデルを使用しているため、
