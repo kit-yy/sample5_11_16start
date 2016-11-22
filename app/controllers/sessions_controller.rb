@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     
     if user && user.authenticate(params[:session][:password])
       log_in user
-      remember(user)
+      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       # ヘルパーで定義。
       redirect_to user
       # redirect_to user == redirect_to userurl(user)
