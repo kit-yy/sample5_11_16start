@@ -1,9 +1,12 @@
 class UsersController < ApplicationController
 
-  before_action :logged_in_user, only:[:edit, :update]
-  # editとupdateのアクションに入る時は、まず「ログインしてください」から始まる。
+  before_action :logged_in_user, only:[:edit, :update,:index]
+  # editとupdateとindexのアクションに入る時は、まず「ログインしてください」から始まる。
   before_action :correct_user, only:[:edit, :update]
 
+  def index
+    @users = User.paginate(page: params[:page])
+  end
 
   def new
     @user = User.new
@@ -50,7 +53,9 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
+    # ここにadmin属性が含まれていないことに注目。
 
+    
     def logged_in_user
       unless logged_in?
         store_location

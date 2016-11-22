@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 gem 'rails',        '4.2.7.1'
 gem 'sass-rails',   '5.0.6'
 gem 'bcrypt'  ,      '3.1.7'
+gem 'faker',        '1.4.2'
+gem 'will_paginate', '3.0.7'
+gem 'bootstrap-will_paginate', '0.0.10'
 gem 'bootstrap-sass', '3.2.0.0'
 gem 'uglifier',     '2.5.3'
 gem 'coffee-rails', '4.1.0'
@@ -31,7 +34,7 @@ group :production do
   gem 'puma',           '2.11.1'
   # puma : 多数のリクエストに対応できるwebサーバ。
   # RubyのデフォルトのWEBrikでは対応できないこともあるため。
-  
+
 end
 # テスト環境と開発環境では、sqlite3
 # 実行環境では、PostageSQL
