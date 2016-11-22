@@ -17,7 +17,8 @@ class User < ActiveRecord::Base
     # これを有効にするには、passwoed_digestカラムを追加し、
     # gemにハッシュ関数を加える。
 
-    validates(:password, presence:true,length:{minimum:6} )
+    validates(:password, presence:true,length:{minimum:6} , allow_nil:true)
+    # allow_nilは、例外処理の方法。
 
 
     def User.digest(string)
