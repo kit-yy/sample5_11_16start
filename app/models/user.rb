@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+    attr_accessor :remember_token
+
     before_save {self.email = email.downcase}
     # emailをまず最初に小文字にする。
     # before_saveコールバックメソッド。
@@ -37,6 +39,30 @@ class User < ActiveRecord::Base
     # ＝＞
     # テスト用では、全員同じパスワードを使用する。
 
+
+    # ランダムなトークンを返すメソッド
+    def User.new_token
+        SecureRandom.urlsafe_base64
+    end
+
+# 記憶トークンカラムをusersモデルに入れることで、
+# 永続的cookiesを可能にする。
+
+    # 永続的cookiesで使用するユーザをデータベースに記憶する。
+    # ユーザを記憶トークンと関連付け、
+    # トークンに対応する記憶ダイジェストをデータベースに保存する。
+    def remember
+        self.remember_token = User.new_token
+        update_attribute(:remember_digest, User.digest(remember_token))
+    end
+    # とりあえずランダムなトークンを作成し、remember_tokenに保存する。
+    # 記憶ダイジェストを更新。
+        
+    def authenticated?(remember_token)
+        BCrypt::Password.new(remember_digest).is_password?(remember_token)
+    end
+    # 渡されたトークンがダジェストと一致したらtrueを返す。
+    # BCrypt::Password.new(remember_digest) == remember_tokenの意味。
 end
 
 # validates :name, presence: true
@@ -50,3 +76,5 @@ end
 # は
 # uniqueness:trueでありかつ、
 # 大文字と小文字を区別しないように設定できる。
+
+# selfを使用しないと、新たにローカル変数を作ってしまう。
